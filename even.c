@@ -3,9 +3,9 @@
 #include <stdlib.h>  // exit
 #include <unistd.h>  // sleep
 
-void handleSIGHUP(int sig) { printf("Ouch!"); }
+void handleSIGHUP(int sig) { printf("Ouch!\n"); }
 
-void handleSIGINT(int sig) { printf("Yeah!"); }
+void handleSIGINT(int sig) { printf("Yeah!\n"); }
 
 int main(int argc, char** argv) {
   signal(SIGHUP, handleSIGHUP);
