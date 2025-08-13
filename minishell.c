@@ -73,6 +73,7 @@ int main(int argk, char *argv[], char *envp[]) {
     /* assert i is number of tokens + 1 */
 
     /* fork a child process to exec the command in v[0] */
+    wpid = 0; // fix compiler warning
     switch (frkRtnVal = fork()) {
       case -1: /* fork returns error to parent process */
       {
@@ -89,7 +90,6 @@ int main(int argk, char *argv[], char *envp[]) {
       {
         if (strcmp(v[i-1], "&") == 0) {
           // execute in background
-          wpid = 0;
         } else {
           wpid = wait(0);
           printf("%s done \n", v[0]);
