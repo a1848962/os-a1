@@ -1,5 +1,6 @@
 #include <signal.h>  // signals
 #include <stdio.h>   // io
+#include <stdlib.h>  // exit
 #include <unistd.h>  // sleep
 
 void handleSIGHUP(int sig) { printf("Ouch!"); }
