@@ -89,6 +89,7 @@ int main(int argk, char *argv[], char *envp[]) {
       {
         if (strcmp(v[i-1], "&") == 0) {
           // execute in background
+          wpid = 0;
         } else {
           wpid = wait(0);
           printf("%s done \n", v[0]);
