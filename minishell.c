@@ -29,16 +29,13 @@ void prompt() {
   fflush(stdout);
 }
 
-void handleSIGCHLD(int sig) { 
-  printf("child done\n");
-}
+void handleSIGCHLD(int sig) { printf("child done\n"); }
 
 /* argk - number of arguments */
 /* argv - argument vector from command line */
 /* envp - environment pointer */
 int main(int argk, char *argv[], char *envp[]) {
   int frkRtnVal;       /* value returned by fork sys call */
-  int wpid;            /* value returned by wait */
   char *v[NV];         /* array of pointers to command line tokens */
   char *sep = " \t\n"; /* command line token separators    */
   int i;               /* parse index */
@@ -73,7 +70,6 @@ int main(int argk, char *argv[], char *envp[]) {
     /* assert i is number of tokens + 1 */
 
     /* fork a child process to exec the command in v[0] */
-    wpid = 0; // fix compiler warning
     switch (frkRtnVal = fork()) {
       case -1: /* fork returns error to parent process */
       {
@@ -88,10 +84,10 @@ int main(int argk, char *argv[], char *envp[]) {
       }
       default: /* code executed only by parent process */
       {
-        if (strcmp(v[i-1], "&") == 0) {
+        if (strcmp(v[i - 1], "&") == 0) {
           // execute in background
         } else {
-          wpid = wait(0);
+          wait(0);
           printf("%s done \n", v[0]);
         }
         break;
