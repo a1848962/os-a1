@@ -36,6 +36,7 @@ void handleSIGCHLD(int sig) { printf("child done\n"); }
 /* envp - environment pointer */
 int main(int argk, char *argv[], char *envp[]) {
   int frkRtnVal;       /* value returned by fork sys call */
+  int wpid;            /* value returned by wait */
   char *v[NV];         /* array of pointers to command line tokens */
   char *sep = " \t\n"; /* command line token separators    */
   int i;               /* parse index */
@@ -87,7 +88,10 @@ int main(int argk, char *argv[], char *envp[]) {
         if (strcmp(v[i - 1], "&") == 0) {
           // execute in background
         } else {
-          wait(0);
+          wpid = wait(0);
+          if (wpid == -1) {
+            perror("no children exist");
+          }
           printf("%s done \n", v[0]);
         }
         break;
