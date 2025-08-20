@@ -155,6 +155,12 @@ int main(int argc, char *argv[], char *envp[]) {
       }
     }
 
+    // handle cd correctly
+    if (strcmp(v[0], "cd") == 0) {
+      chdir(v[1]);
+      continue;
+    }
+
     /* assert i is number of tokens + 1 */
     run_in_bg = false;
     if (strcmp(v[i - 1], "&") == 0) {
@@ -168,7 +174,6 @@ int main(int argc, char *argv[], char *envp[]) {
       case -1: /* fork returns error to parent process */
       {
         perror("fork failed");
-        exit(EXIT_FAILURE);
         break;
       }
       case 0: /* code executed only by child process */
