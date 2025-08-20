@@ -119,7 +119,6 @@ void handleSIGCHLD(int sig) {
 /* envp - environment pointer */
 int main(int argc, char *argv[], char *envp[]) {
   int pid;             /* value returned by fork sys call */
-  int wpid;            /* value returned by wait */
   char *v[NV];         /* array of pointers to command line tokens */
   char *sep = " \t\n"; /* command line token separators    */
   int i;               /* parse index */
