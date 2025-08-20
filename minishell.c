@@ -25,7 +25,7 @@ int job_counter = 1;      /* global job counter, starts at 1 */
 int num_bg_processes = 0; /* number of active background processes */
 
 /* ----------------------------------------------------------------
-**   RUDIMENTARY HASHMAP IMPLEMENTATION TO TRACK ACTIVE PROCESSES
+**    ARRAY + HELPER FUNCTIONS TO TRACK ACTIVE PROCESSES IN MAP
 ** ---------------------------------------------------------------- */
 
 /**
@@ -95,7 +95,7 @@ bool remove_bg_process(struct bg_process *removed_process, int pid) {
   }
 }
 /* ----------------------------------------------------------------
-**                    END HASHMAP IMPLEMENTATION
+**                      END MAP IMPLEMENTATION
 ** ---------------------------------------------------------------- */
 
 /**
