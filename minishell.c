@@ -186,16 +186,15 @@ int main(int argc, char *argv[], char *envp[]) {
       {
         if (run_in_bg) {
           // add process info to active background processes hashmap
-          printf("starting bg proc");
           if (!add_bg_process(pid, job_counter, command)) {
             // perror("maximum number of background processes exceeded");
           }
           printf("[%d] %d\n", job_counter, pid);
+          job_counter++;
         } else {
           // wait for process to finish before continuing
           waitpid(pid, NULL, 0);
         }
-        job_counter++;
         break;
       }
     } /* switch */
