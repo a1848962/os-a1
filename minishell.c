@@ -161,7 +161,6 @@ int main(int argc, char *argv[], char *envp[]) {
     }
 
     /* assert i is number of tokens + 1 */
-    printf("last token = %s\n", v[i-1]);
     run_in_bg = false;
     if (strcmp(v[i - 1], "&") == 0) {
       v[i - 1] = NULL;                      // remove & from token list
@@ -191,7 +190,7 @@ int main(int argc, char *argv[], char *envp[]) {
           if (!add_bg_process(pid, job_counter, command)) {
             // perror("maximum number of background processes exceeded");
           }
-          printf("[%d] [%d]\n", job_counter, pid);
+          printf("[%d] %d\n", job_counter, pid);
         } else {
           // wait for process to finish before continuing
           waitpid(pid, NULL, 0);
